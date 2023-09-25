@@ -38,7 +38,7 @@ Download from https://docs.conda.io/projects/miniconda/en/latest/
     conda config --remove channels defaults
     conda upgrade -c conda-forge --all
     conda install conda-build
-	conda install conda-verify
+    conda install conda-verify
 
 
 ## Building
@@ -54,3 +54,4 @@ Download from https://docs.conda.io/projects/miniconda/en/latest/
 
   - https://docs.conda.io/projects/conda-build/en/latest/user-guide/tutorials/build-pkgs.html
   - https://docs.conda.io/projects/conda-build/en/stable/user-guide/recipes/debugging.html
+  - https://conda-forge.org/docs/maintainer/knowledge_base.html

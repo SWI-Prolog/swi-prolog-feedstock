@@ -12,30 +12,31 @@ source:
 # git_depth: 1
 
 build:
-  number: 9
+  number: 12
 
 requirements:
   build:
     - git
     - cmake
     - pkg-config	# [not win]
-    - ninja
+    - ninja		# [not win]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
 
   host:
     - zlib
-    - gmp		# [not osx]
-    - gperftools
+    - pthreads-win32	# [win]
+    - gmp		# [not osx and not win]
+    - gperftools	# [not win]
     - python
-    - libedit
-    - readline
-    - openssl >=3.1
-    - unixodbc
+    - libedit		# [not win]
+    - readline		# [not win]
+    - openssl
+    - unixodbc		# [not win]
     - libarchive
     - pcre2
     - yaml
-    - ossuuid		# [not osx]
+    - ossuuid		# [not osx and not win]
     - libdb		# [not osx]
     - openjdk
     - fontconfig	# [not win]
@@ -53,19 +54,21 @@ requirements:
 
   run:
     - zlib
-    - gmp		# [not osx]
-    - gperftools
-    - libedit
-    - readline
-    - openssl >=3.1
-    - unixodbc
+    - pthreads-win32	# [win]
+    - gmp		# [not osx and not win]
+    - gperftools	# [not win]
+    - python
+    - libedit		# [not win]
+    - readline		# [not win]
+    - openssl
+    - unixodbc		# [not win]
     - libarchive
     - pcre2
     - yaml
-    - ossuuid		# [not osx]
+    - ossuuid		# [not osx and not win]
     - libdb		# [not osx]
     - openjdk
-    - python
+    - python		# [not win]
     - fontconfig	# [not win]
     - xorg-libice	# [not win]
     - xorg-libsm	# [not win]
