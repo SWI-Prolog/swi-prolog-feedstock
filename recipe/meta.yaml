@@ -12,7 +12,7 @@ source:
 # git_depth: 1
 
 build:
-  number: 18
+  number: 19
 
 requirements:
   build:
@@ -49,6 +49,7 @@ requirements:
     - xorg-libxmu	# [not win]
     - xorg-libxpm	# [not win]
     - xorg-libxrender	# [not win]
+    - xorg-libxft	# [not win]
     - xorg-libxt	# [not win]
     - jpeg
 
