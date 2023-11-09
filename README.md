@@ -22,6 +22,18 @@ Issues
   - Building using GMP crashes.  This is also the problem for the non-conda
     build, so we revert to the bundled LibBF
 
+## Windows (x64)
+
+Builds using VS 2022.
+
+Issues
+
+  - Not extensively tested
+  - Uses bundled LibBF for big integers and rational numbers
+
+
+
+
 
 ## Install miniconda
 
@@ -49,6 +61,20 @@ Download from https://docs.conda.io/projects/miniconda/en/latest/
     conda install --use-local swi-prolog
     conda build purge
 
+## Debugging the build
+
+  - Use the non-powershell here becasue `build_env_setup.bat` is not available
+    for powershell.
+
+    cd ~/miniconda3/conda-bld\swi-prolog_NNN
+    call build_env_setup.bat
+    cd build
+    cmake --build --config Release
+
+## Start Conda shell on Windows
+
+  - Search "anaconda" and open the desired shell.
+  - Use the PowerShell prompt for `conda build`
 
 ## Some Conda doc links
 
