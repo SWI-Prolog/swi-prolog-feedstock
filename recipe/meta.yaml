@@ -1,4 +1,4 @@
-{% set version = "9.1.15" %}
+{% set version = "9.1.18" %}
 
 package:
   name: swi-prolog
@@ -12,7 +12,7 @@ source:
 # git_depth: 1
 
 build:
-  number: 19
+  number: 23
 
 requirements:
   build:
@@ -26,8 +26,8 @@ requirements:
   host:
     - zlib
     - pthreads-win32	# [win]
-    - gmp		# [not osx and not win]
-    - gperftools	# [not win]
+    - gmp		# [not (osx or win)]
+    - gperftools	# [not (osx or win)]
     - python
     - libedit		# [not win]
     - readline		# [not win]
@@ -36,37 +36,7 @@ requirements:
     - libarchive
     - pcre2
     - yaml
-    - ossuuid		# [not osx and not win]
-    - libdb		# [not osx]
-    - openjdk
-    - fontconfig	# [not win]
-    - xorg-libice	# [not win]
-    - xorg-libsm	# [not win]
-    - xorg-libx11	# [not win]
-    - xorg-libxaw	# [not win]
-    - xorg-libxext	# [not win]
-    - xorg-libxinerama	# [not win]
-    - xorg-libxmu	# [not win]
-    - xorg-libxpm	# [not win]
-    - xorg-libxrender	# [not win]
-    - xorg-libxft	# [not win]
-    - xorg-libxt	# [not win]
-    - jpeg
-
-  run:
-    - zlib
-    - pthreads-win32	# [win]
-    - gmp		# [not osx and not win]
-    - gperftools	# [not win]
-    - python
-    - libedit		# [not win]
-    - readline		# [not win]
-    - openssl
-    - unixodbc		# [not win]
-    - libarchive
-    - pcre2
-    - yaml
-    - ossuuid		# [not osx and not win]
+    - ossuuid		# [not (osx or win)]
     - libdb		# [not osx]
     - openjdk
     - python		# [not win]
@@ -81,12 +51,21 @@ requirements:
     - xorg-libxpm	# [not win]
     - xorg-libxrender	# [not win]
     - xorg-libxt	# [not win]
-    - jpeg
+    - xorg-libxft	# [not (osx or win)]
+    - libjpeg-turbo
+
+  run:
+    - python
+    - openjdk
 
 test:
 
 about:
   home: https://www.swi-prolog.org
   license: BSD-2
+  license_family: BSD-Clause
   license_family: BSD
-  summary: SWI-Prolog system
+  license_file: LICENSE
+  summary: A comprehensive Prolog implementation
+  dev_url: https://github.com/SWI-Prolog/swipl-devel
+  doc_url: https://www.swi-prolog.org/pldoc/doc_for?object=root
