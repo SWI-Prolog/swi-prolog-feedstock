@@ -12,7 +12,7 @@ source:
 # git_depth: 1
 
 build:
-  number: 30
+  number: 32
 
 requirements:
   build:
@@ -29,6 +29,9 @@ requirements:
     - gmp		# [not (osx or win)]
     - gperftools	# [not (osx or win)]
     - python
+    - pip
+    - setuptools
+    - wheel
     - libedit		# [not win]
     - readline		# [not win]
     - openssl
@@ -56,6 +59,7 @@ requirements:
 
   run:
     - python
+    - setuptools
     - openjdk
     - pthreads-win32    # [win]
 

@@ -18,3 +18,11 @@ if errorlevel 1 exit /b 1
 
 cmake --build . --target install --config Release
 if errorlevel 1 exit /b 1
+
+REM Install janus_swi Python package as well
+set PIP_OPTS=--no-deps --no-build-isolation --ignore-installed --no-cache-dir -vvv
+
+cd ../packages/swipy
+if errorlevel 1 exit /b 1
+%PYTHON% -m pip install . %PIP_OPTS%
+if errorlevel 1 exit /b 1
