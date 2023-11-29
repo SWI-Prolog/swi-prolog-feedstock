@@ -12,7 +12,7 @@ source:
 # git_depth: 1
 
 build:
-  number: 23
+  number: 30
 
 requirements:
   build:
@@ -57,6 +57,7 @@ requirements:
   run:
     - python
     - openjdk
+    - pthreads-win32    # [win]
 
 test:
 
