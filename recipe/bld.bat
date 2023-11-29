@@ -1,5 +1,3 @@
-REM Completely untested
-
 md build
 cd build
 if errorlevel 1 exit 1
