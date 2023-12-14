@@ -32,9 +32,6 @@ Issues
   - Uses bundled LibBF for big integers and rational numbers
 
 
-
-
-
 ## Install miniconda
 
 Download and  prepare miniconda.   Note that we  require `conda-forge`
@@ -75,6 +72,19 @@ Download from https://docs.conda.io/projects/miniconda/en/latest/
 
   - Search "anaconda" and open the desired shell.
   - Use the PowerShell prompt for `conda build`
+
+## Status of this repository
+
+This repo  was started  before I found  the conda-forge  feedstock for
+SWI-Prolog   at   https://github.com/conda-forge/swi-prolog-feedstock.
+Eventually, this work will be  merged into this conda-forge feedstock.
+As is, this recipe is cross-platform and deals with the latest release
+and notably with the Python interface.
+
+In particular, we still must pay attention to
+https://github.com/conda-forge/swi-prolog-feedstock/issues/18#issuecomment-1789014114
+
+
 
 ## Some Conda doc links
 
