@@ -1,18 +1,18 @@
-{% set version = "9.1.18" %}
+{% set version = "9.1.21" %}
 
 package:
   name: swi-prolog
   version: {{ version }}
 
 source:
-# url: https://www.swi-prolog.org/download/devel/src/swipl-{{ version }}.tar.gz
-# sha256: c8dc901bfe2a10990473b2f2b79d92332ebc23b8b6f79107177258b708a57595
-  git_url: https://github.com/SWI-Prolog/swipl-devel.git
+  url: https://www.swi-prolog.org/download/devel/src/swipl-{{ version }}.tar.gz
+  sha256: 8536acab1892edb7db3fa46df439fc19158a8448341af98a33c6359b312ef705
+# git_url: https://github.com/SWI-Prolog/swipl-devel.git
 # git_rev: HEAD
 # git_depth: 1
 
 build:
-  number: 32
+  number: 5
 
 requirements:
   build:
@@ -63,7 +63,39 @@ requirements:
     - openjdk
     - pthreads-win32    # [win]
 
-test:
+outputs:
+  - name: swi-prolog-core
+    script: install-core.py
+    requirements:
+      build:
+        - cmake
+      run:
+        - zlib
+        - pthreads-win32	# [win]
+        - gperftools		# [not (osx or win)]
+        - gmp			# [not (osx or win)]
+        - ossuuid		# [not (osx or win)]
+  - name: swi-prolog-gui
+    script: install-gui.py
+    requirements:
+      build:
+        - cmake
+      run:
+        - fontconfig		# [not win]
+        - xorg-libice		# [not win]
+        - xorg-libsm		# [not win]
+        - xorg-libx11		# [not win]
+        - xorg-libxaw		# [not win]
+        - xorg-libxext		# [not win]
+        - xorg-libxinerama	# [not win]
+        - xorg-libxmu		# [not win]
+        - xorg-libxpm		# [not win]
+        - xorg-libxrender	# [not win]
+        - xorg-libxt		# [not win]
+        - xorg-libxft		# [not (osx or win)]
+        - libjpeg-turbo
+
+# test:
 
 about:
   home: https://www.swi-prolog.org

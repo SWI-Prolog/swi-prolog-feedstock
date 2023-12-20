@@ -84,6 +84,14 @@ and notably with the Python interface.
 In particular, we still must pay attention to
 https://github.com/conda-forge/swi-prolog-feedstock/issues/18#issuecomment-1789014114
 
+### Installing SWI-Prolog components (TODO for Conda outputs)
+
+  - For a list of components, see `cmake/PackageSelection.cmake`.  Main
+    (obligatory) component is `Core_system`.
+  - Install a component using
+
+        cmake -DCMAKE_INSTALL_COMPONENT=<component> -P cmake_install.cmake
+
 
 
 ## Some Conda doc links

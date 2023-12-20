@@ -34,9 +34,9 @@ cmake -G "Ninja" \
       ${SRC_DIR}
 
 cmake --build . -j ${CPU_COUNT} --config $BUILD_TYPE
-cmake --build . -j ${CPU_COUNT} --target install
+#cmake --build . -j ${CPU_COUNT} --target install
 
 # Install janus_swi Python package as well
-PIP_OPTS="--no-deps --no-build-isolation --ignore-installed --no-cache-dir -vvv"
+# PIP_OPTS="--no-deps --no-build-isolation --ignore-installed --no-cache-dir -vvv"
 
-(cd ../packages/swipy && $PYTHON -m pip install . $PIP_OPTS)
+# (cd ../packages/swipy && $PYTHON -m pip install . $PIP_OPTS)
