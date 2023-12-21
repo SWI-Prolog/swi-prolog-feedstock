@@ -14,7 +14,7 @@ source:
 # git_depth: 1
 
 build:
-  number: 16
+  number: 17
 
 requirements:
   build:
@@ -79,6 +79,57 @@ outputs:
         - gperftools		# [not (osx or win)]
         - gmp			# [not (osx or win)]
         - ossuuid		# [not (osx or win)]
+  - name: swi-prolog-core-libs
+    script: install-core-libs.py
+    requirements:
+      build:
+        - cmake
+      run:
+        - swi-prolog-core
+        - ossuuid		# [not (osx or win)]
+        - libedit		# [not win]
+        - readline		# [not win]
+        - yaml
+  - name: swi-prolog-pcre
+    script: install-pcre.py
+    requirements:
+      build:
+        - cmake
+      run:
+        - swi-prolog-core
+        - pcre2
+  - name: swi-prolog-odbc
+    script: install-odbc.py
+    requirements:
+      build:
+        - cmake
+      run:
+        - swi-prolog-core
+        - unixodbc
+  - name: swi-prolog-archive
+    script: install-archive.py
+    requirements:
+      build:
+        - cmake
+      run:
+        - swi-prolog-core
+        - libarchive
+  - name: swi-prolog-db
+    script: install-db.py
+    requirements:
+      build:
+        - cmake
+      run:
+        - swi-prolog-core
+        - libdb			# [not osx]
+  - name: swi-prolog-ssl
+    script: install-ssl.py
+    requirements:
+      build:
+        - cmake
+      run:
+        - swi-prolog-core
+        - openssl
   - name: swi-prolog-gui
     script: install-gui.py
     requirements:
@@ -116,6 +167,13 @@ outputs:
       run:
         - swi-prolog-core
         - openjdk
+  - name: swi-prolog-doc
+    script: install-doc.py
+    requirements:
+      build:
+        - cmake
+      run:
+        - swi-prolog-core
 
 test:
 
