@@ -8,13 +8,13 @@ source:
 # url: https://www.swi-prolog.org/download/devel/src/swipl-{{ version }}.tar.gz
 # sha256: 8536acab1892edb7db3fa46df439fc19158a8448341af98a33c6359b312ef705
   url: file:///home/janw/src/swipl-9.1.21.tar.gz
-  sha256: f494187451901c947924ec34bc78ddeed35a86b00ef96f34f48ebf9f527b1ab7
+  sha256: d3ef4c7b9572b1b089c1444531e3ec51530840e266f845e3e232dc2bd1a269cc
 # git_url: https://github.com/SWI-Prolog/swipl-devel.git
 # git_rev: HEAD
 # git_depth: 1
 
 build:
-  number: 17
+  number: 20
 
 requirements:
   build:
@@ -61,14 +61,32 @@ requirements:
     - xorg-libxft	# [not (osx or win)]
     - libjpeg-turbo
 
-  run:
-    - python
-    - setuptools
-    - openjdk
-    - pthreads-win32    # [win]
-
 outputs:
+  - name: swi-prolog
+    about:
+      summary: SWI-Prolog meta package
+      description: |
+        SWI-Prolog provides a comprehensive implementation of the Prolog
+        programming language.  This meta package installs most of the
+        system, including the development tools.  It excludes less
+        commonly used packages with large dependencies.  Use
+        `conda search "swi-prolog-*"` to find all available SWI-Prolog
+        packages.
+    requirements:
+      run:
+        - swi-prolog-core
+        - swi-prolog-core-libs
+        - swi-prolog-python
+        - swi-prolog-archive
+        - swi-prolog-pcre
+        - swi-prolog-ssl
+        - swi-prolog-gui
+        - swi-prolog-doc
   - name: swi-prolog-core
+    about:
+      summary: SWI-Prolog core system
+      description: |
+        The SWI-Prolog compiler and basic libraries.
     script: install-core.py
     requirements:
       build:
@@ -80,6 +98,12 @@ outputs:
         - gmp			# [not (osx or win)]
         - ossuuid		# [not (osx or win)]
   - name: swi-prolog-core-libs
+    about:
+      summary: SWI-Prolog libraries with few dependencies
+      description: |
+        Most of SWI-Prolog's extensive library suite, except the
+        libraries that require substantial dependencies.   This
+        package includes the command line editors.
     script: install-core-libs.py
     requirements:
       build:
@@ -91,6 +115,9 @@ outputs:
         - readline		# [not win]
         - yaml
   - name: swi-prolog-pcre
+    about:
+      summary: SWI-Prolog Perl Compatible Regular Expression binding
+      doc_url: https://www.swi-prolog.org/pldoc/package/pcre.html
     script: install-pcre.py
     requirements:
       build:
@@ -99,6 +126,9 @@ outputs:
         - swi-prolog-core
         - pcre2
   - name: swi-prolog-odbc
+    about:
+      summary: SWI-Prolog ODBC database binding
+      doc_url: https://www.swi-prolog.org/pldoc/package/odbc.html
     script: install-odbc.py
     requirements:
       build:
@@ -107,6 +137,14 @@ outputs:
         - swi-prolog-core
         - unixodbc
   - name: swi-prolog-archive
+    about:
+      summary: SWI-Prolog libarchive binding
+      description: |
+        SWI-Prolog binding to libarchive.  This provides platform
+        independent support for creating and extracting many common
+        archive formats.  It is used by the package manager to install
+        packages that are distributed as .zip or .tar.gz files.
+      doc_url: https://www.swi-prolog.org/pldoc/package/archive.html
     script: install-archive.py
     requirements:
       build:
@@ -115,6 +153,11 @@ outputs:
         - swi-prolog-core
         - libarchive
   - name: swi-prolog-db
+    about:
+      summary: SWI-Prolog BerkeleyDB binding
+      description: |
+        SWI-Prolog binding to the BerkeleyDB key-value store.
+      doc_url: https://www.swi-prolog.org/pldoc/package/bdb4pl.html
     script: install-db.py
     requirements:
       build:
@@ -123,6 +166,13 @@ outputs:
         - swi-prolog-core
         - libdb			# [not osx]
   - name: swi-prolog-ssl
+    about:
+      summary: SWI-Prolog OpenSSL binding
+      description: |
+        SWI-Prolog binding to OpenSSL (or LibreSSL).  This provides
+        support for HTTPS in the HTTP client and server libraries as
+        well as library(crypto) with many cryptographic utilities.
+      doc_url: https://www.swi-prolog.org/pldoc/package/ssl.html
     script: install-ssl.py
     requirements:
       build:
@@ -131,6 +181,16 @@ outputs:
         - swi-prolog-core
         - openssl
   - name: swi-prolog-gui
+    about:
+      summary: SWI-Prolog graphical subsystem (IDE tools)
+      description: |
+        SWI-Prolog GUI package named XPCE.   This package provides
+        graphics using X11 (Linux, MacOS using XQuartz) and on
+        Windows the native Win32 API.  XPCE is deprecated for
+        new application.  Many of the IDE tools are written in
+        XPCE: the source-level debugger, the built-in PceEmacs editor,
+        examining profile output, file dependencies, etc.
+      doc_url: https://www.swi-prolog.org/packages/xpce/index.html
     script: install-gui.py
     requirements:
       build:
@@ -151,6 +211,13 @@ outputs:
         - xorg-libxft		# [not (osx or win)]
         - libjpeg-turbo
   - name: swi-prolog-python
+    about:
+      summary: SWI-Prolog Python interface (Janus)
+      description: |
+        This package provides library(janus) as well as the Python
+        package janus_swi.  It provides an efficient and powerful
+        bi-directional bridge between Python and SWI-Prolog.
+      doc_url: https://www.swi-prolog.org/pldoc/package/janus.html
     script: install-python.py
     requirements:
       build:
@@ -160,6 +227,11 @@ outputs:
         - swi-prolog-core
         - python
   - name: swi-prolog-java
+    about:
+      summary: SWI-Prolog Java interface (JPL)
+      description: |
+        This package provides a bi-directional interface to Java.
+      doc_url: https://www.swi-prolog.org/pldoc/package/jpl.html
     script: install-java.py
     requirements:
       build:
@@ -168,12 +240,34 @@ outputs:
         - swi-prolog-core
         - openjdk
   - name: swi-prolog-doc
+    about:
+      summary: SWI-Prolog help data
+      description: |
+        The SWI-Prolog HTML help files.   These files are also used
+        by help/1 and apropos/1 to provide textual help on the
+        command line.
     script: install-doc.py
     requirements:
       build:
         - cmake
       run:
         - swi-prolog-core
+  - name: swi-prolog-tests
+    about:
+      summary: SWI-Prolog test suite
+      description: |
+        The SWI-Prolog test suite.   It allows for testing the
+        installed configuration using test_installation/0.  Note
+        that this is _not_ a test framework.  SWI-Prolog's test
+        framework is called _plunit_, which is part of the
+        `swi-prolog-core-libs` package.
+    script: install-tests.py
+    requirements:
+      build:
+        - cmake
+      run:
+        - swi-prolog-core
+        - swi-prolog-core-libs
 
 test:
 
