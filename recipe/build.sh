@@ -16,7 +16,10 @@ fi
 CMAKE_OPTS=
 case "$(uname)" in
     Darwin)
-	CMAKE_OPTS+=" -DUSE_GMP=OFF -DSWIPL_PACKAGES_BDB=OFF"
+	CMAKE_OPTS+=" -DUSE_GMP=OFF"
+	CMAKE_OPTS+=" -DSWIPL_PACKAGES_BDB=OFF"
+	CMAKE_OPTS+=" -DCMAKE_OSX_SYSROOT=${CONDA_BUILD_SYSROOT}"
+	CMAKE_OPTS+=" -DMACOSX_DEPENDENCIES_FROM=$PREFIX"
 	;;
 esac
 
@@ -26,17 +29,18 @@ cmake -G "Ninja" \
       -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
       -DCMAKE_PREFIX_PATH=$PREFIX \
       -DCMAKE_INSTALL_PREFIX=$PREFIX \
+      -DSWIPL_INSTALL_IN_LIB=ON \
+      -DSWIPL_INSTALL_IN_SHARE=ON \
       -DCMAKE_INSTALL_LIBDIR=lib \
-      -DCMAKE_OSX_SYSROOT=${CONDA_BUILD_SYSROOT} \
-      -DMACOSX_DEPENDENCIES_FROM=$PREFIX \
       -DSWIPL_PACKAGES_QT=OFF \
       -DINSTALL_TESTS=ON \
       ${SRC_DIR}
 
+# Build Prolog and packages
 cmake --build . -j ${CPU_COUNT} --config $BUILD_TYPE
+# Build Python janus_swi package
+(cd ../packages/swipy && $PYTHON -m build --no-isolation .)
+
+# Install (disabled as we install using the outputs section)
 #cmake --build . -j ${CPU_COUNT} --target install
 
-# Install janus_swi Python package as well
-# PIP_OPTS="--no-deps --no-build-isolation --ignore-installed --no-cache-dir -vvv"
-
-# (cd ../packages/swipy && $PYTHON -m pip install . $PIP_OPTS)
