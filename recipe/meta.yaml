@@ -8,13 +8,13 @@ source:
 # url: https://www.swi-prolog.org/download/devel/src/swipl-{{ version }}.tar.gz
 # sha256: 8536acab1892edb7db3fa46df439fc19158a8448341af98a33c6359b312ef705
   url: file:///home/janw/src/swipl-9.1.21.tar.gz
-  sha256: d3ef4c7b9572b1b089c1444531e3ec51530840e266f845e3e232dc2bd1a269cc
+  sha256: 2ffa9c97eeda118a749e20d538854c744921936c8ea502873f33b4cc03ebacfa
 # git_url: https://github.com/SWI-Prolog/swipl-devel.git
 # git_rev: HEAD
 # git_depth: 1
 
 build:
-  number: 20
+  number: 21
 
 requirements:
   build:
